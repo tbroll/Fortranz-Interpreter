@@ -1,0 +1,45 @@
+c234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890
+          WRITE "ADD, SUBTRACT, MULTIPLY, OR DIVIDE?"
+          READ I
+          IF I = "ADD" THEN
+          CALL ADDITION
+          IF I = "SUBTRACT" THEN
+          CALL SUBTRACTION
+          IF I = "MULTIPLY" THEN
+          CALL MULTIPLICATION
+          ELSE
+          CALL DIVISION
+          END IF 
+          END
+      SUBROUTINE ADDITION()
+          DO 5 K=0, 50
+          I = 1+RND()*8
+          J = 1+RND()*8
+          WRITE "I+J=" I+J
+5         CONTINUE
+          END 
+       SUBROUTINE SUBTRACTION()
+          DO 6 K=0, 50
+7         I = 5+RND()*25
+          J = 2+RND()*7
+          IF (I .LT. J) GOTO 7
+          WRITE "I-J=" I-J
+6         CONTINUE
+          END 
+       SUBROUTINE MULTIPLICATION()
+          DO 8 K=0, 50
+          I = 1+RND()*8
+          J = 1+RND()*8
+          WRITE "I*J=" I*J
+8         CONTINUE
+          END 
+       SUBROUTINE DIVISION()
+          DO 11 K=0, 50
+9         I = 1+RND()*8
+          J = 1+RND()*8
+          L = I MOD J
+          IF(L .GT. 0) GOTO 9
+          WRITE "I/J=" I/J
+          CONTINUE
+          END 
+
