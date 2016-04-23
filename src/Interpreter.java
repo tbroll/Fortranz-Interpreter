@@ -3,6 +3,7 @@ import java.lang.*;
 import java.util.*;
 public class Interpreter{
     private BufferedReader br;
+    private int counter = 0;
     public static void main(String [] args){
         Scanner scanner = new Scanner(System.in); 
         Interpreter interpreter = new Interpreter();
@@ -10,13 +11,12 @@ public class Interpreter{
         interpreter.readInput(file);
     }
     private void readInput(String input){
-        int counter = 0;
         initialize(input);
         String thisLine = null;
         try{
             br = new BufferedReader(new FileReader(input));
             while((thisLine = br.readLine()) != null){
-                convertInputfileToJava(thisLine, counter);
+                convertInputfileToJava(thisLine);
             }
         System.out.println("}");
         }
@@ -24,7 +24,7 @@ public class Interpreter{
             System.out.println("error: " + e.getMessage());
         }
     }
-    private void convertInputfileToJava(String currentLine, int counter){
+    private void convertInputfileToJava(String currentLine){
         String[] line = currentLine.split("\\s+");
         if(line[1].equals("CALL")){
             System.out.println(line[2]+"();");
@@ -36,10 +36,10 @@ public class Interpreter{
             System.out.println("private static void "+line[2] + "{");
            counter++;
           if (counter == 4){ 
-            System.out.println("int I; \n int J; \n int L");
+            System.out.println("int I; \nint J; \nint L;");
           }
           else{
-            System.out.println("int I; \n int J;");
+            System.out.println("int I; \nint J;");
           }
         }
         else if(line[1].equals("DO")){
