@@ -4,34 +4,33 @@
           CALL DIVISION
           END
       SUBROUTINE ADDITION()
-          DO 1 K=0, 50
+          DO 11 K=0, 50
           I = 1 + RND() * 8
           J = 1 + RND() * 8
           WRITE "I+J=" I+J
-1         CONTINUE
+11        CONTINUE
           END 
        SUBROUTINE SUBTRACTION()
-          DO 2 K=0, 50
-3         I = 5 + RND() * 25
+          DO 11 K=0, 50
+10        I = 5 + RND() * 25
           J = 2 + RND() * 7
-          IF (I .LT. J) GOTO 3
+          IF (I .LT. J) GOTO 10
           WRITE "I-J=" I-J
-2         CONTINUE
+11        CONTINUE
           END 
        SUBROUTINE MULTIPLICATION()
-          DO 4 K=0, 50
+          DO 11 K=0, 50
           I = 1 + RND() * 8
           J = 1 + RND() * 8
           WRITE "I*J=" I*J
-4         CONTINUE
+11        CONTINUE
           END 
        SUBROUTINE DIVISION()
-          DO 6 K=0, 50
-5         I = 1 + RND() * 8
+          DO 11 K=0, 50
+10        I = 1 + RND() * 8
           J = 1 + RND() * 8
           L = I MOD J
-          IF(L .GT. 0) GOTO 5
+          IF (L .GT. 0) GOTO 10
           WRITE "I/J=" I/J
-6         CONTINUE
+11        CONTINUE
           END 
-
