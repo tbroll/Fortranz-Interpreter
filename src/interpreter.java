@@ -10,19 +10,21 @@ public class Interpreter{
         interpreter.readInput(file);
     }
     private void readInput(String input){
+        int counter = 0;
         initialize(input);
         String thisLine = null;
         try{
             br = new BufferedReader(new FileReader(input));
             while((thisLine = br.readLine()) != null){
-                convertInputfileToJava(thisLine);
+                convertInputfileToJava(thisLine, counter);
             }
+        System.out.println("}");
         }
         catch(IOException e){
             System.out.println("error: " + e.getMessage());
         }
     }
-    private void convertInputfileToJava(String currentLine){
+    private void convertInputfileToJava(String currentLine, int counter){
         String[] line = currentLine.split("\\s+");
         if(line[1].equals("CALL")){
             System.out.println(line[2]+"();");
@@ -31,7 +33,14 @@ public class Interpreter{
             System.out.println("}");
         }
         else if(line[1].equals("SUBROUTINE")){
-            System.out.println("private void "+line[2] + "{");
+            System.out.println("private static void "+line[2] + "{");
+           counter++;
+          if (counter == 4){ 
+            System.out.println("int I; \n int J; \n int L");
+          }
+          else{
+            System.out.println("int I; \n int J;");
+          }
         }
         else if(line[1].equals("DO")){
             System.out.println("for(int " +
@@ -44,15 +53,19 @@ public class Interpreter{
                 }
         else if(line[0].equals("10")){
                 line[5] = "Math.random()";
-            System.out.print("do{ int "); 
+                System.out.print("do{ "); 
+                line[2] = line[2] + " (int)(";
+                line[line.length-1] = line[line.length-1] + ")";
                 printline(line, line.length);
                 }
         else if(line[1].equals("I") || line[1].equals("J")){
+                line[2] = "= (int)(";
                 line[5] = "Math.random()";
+                line[line.length-1] = line[line.length-1] +")";
                 printline(line, line.length);
         }
         else if(line[1].equals("L")){
-            line[4] = "%";
+                line[4] = "%";
                 printline(line, line.length);
         }
         else if(line[1].equals("IF")){
@@ -66,8 +79,12 @@ public class Interpreter{
                 printline(line, 5);
         }
         else{
-            System.out.println("System.out.println(" + line[2] + " " +
-                   "(" + line[3]+ "));");
+            String operand1 = line[2].substring(1,2);
+                String operator = line[2].substring(2,3);
+                String operand2 = line[2].substring(3,4);
+            System.out.println("System.out.println(" + operand1 +"+" + "\""+
+                    operator  + "\""+"+" + operand2+"+" + "\""+"= " + "\""+
+                  "+"+ "(" + line[3]+ "));");
         }
     }
     private void printline(String[] line, int lastIndex){
