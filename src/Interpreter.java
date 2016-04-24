@@ -49,6 +49,9 @@ public class Interpreter{
           else{
             System.out.println("int I; \nint J;");
           }
+          System.out.println("System.out.println("+"\""+ "\""+");");
+          System.out.println("System.out.println("+"\""+line[2]+"\""+");");
+          System.out.println("System.out.println("+"\""+ "\""+");");
         }
         //converts Do loops into for loops.
         else if(line[1].equals("DO")){
