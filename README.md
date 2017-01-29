@@ -1,1 +1,1 @@
-Fortranz Interpreter
+This program was an assignment for my Principles of Programming class. The assignment was to create an interpreter that translated a fictional variation of Fortran called Fortranz. You see, since there is no current compiler for Fortranz, we needed to convert Fortranz into Java and then executed the Java code.
